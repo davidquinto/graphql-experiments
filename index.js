@@ -4,9 +4,11 @@ var { buildSchema } = require('graphql');
 
 var schema = buildSchema(`
   type Query {
+    getHuman(id: ID!): Client,
     clients: [Client]
   }
   type Client {
+    id: ID!,
     name: String,
     age: Int,
     hobbies: [Hobby]
@@ -22,39 +24,50 @@ var schema = buildSchema(`
   }
 `);
 
+var fakeDatabase = [
+  {
+    id: 1,
+    name: 'Hector',
+    age: 22,
+    hobbies: [
+      {
+        name: 'Videogames',
+        level: 'INTERMEDIATE'
+      }
+    ]
+  },
+  {
+    id: 2,
+    name: 'Susana',
+    age: 26,
+    hobbies: [
+      {
+        name: 'Football',
+        level: 'INTERMEDIATE'
+      }
+    ]
+  },
+  {
+    id: 3,
+    name: 'Andy',
+    age: 32,
+    hobbies: [
+      {
+        name: 'Reading',
+        level: 'EXPERT'
+      }
+    ]
+  }
+]
+
 var root = {
-  clients: [
-    {
-      name: 'Hector',
-      age: 22,
-      hobbies: [
-        {
-          name: 'Videogames',
-          level: 'INTERMEDIATE'
-        }
-      ]
-    },
-    {
-      name: 'Susana',
-      age: 26,
-      hobbies: [
-        {
-          name: 'Football',
-          level: 'INTERMEDIATE'
-        }
-      ]
-    },
-    {
-      name: 'Andy',
-      age: 32,
-      hobbies: [
-        {
-          name: 'Reading',
-          level: 'EXPERT'
-        }
-      ]
+  getHuman: function({ id }) {
+    if (!fakeDatabase[id]) {
+      throw new Error('no human exists with id ' + id);
     }
-  ]
+    return fakeDatabase[id]
+  },
+  clients: fakeDatabase
 };
 
 var app = express();
