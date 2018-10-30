@@ -39,7 +39,7 @@ var queryType = new graphql.GraphQLObjectType({
       type: clientType,
       // `args` describes the arguments that the `user` query accepts
       args: {
-        id: { type: graphql.GraphQLID }
+        id: { type: graphql.GraphQLNonNull(graphql.GraphQLID) }
       },
       resolve: function (_, { id }) {
         return data.clients[id];
