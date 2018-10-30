@@ -1,0 +1,41 @@
+{
+  "clients": [
+    {
+      "id": 0,
+      "name": "Hector",
+      "age": 22,
+      "hobbies": [
+        {
+          "name": "Videogames",
+          "level": 0
+        },
+        {
+          "name": "Tennis",
+          "level": 0
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "Susana",
+      "age": 26,
+      "hobbies": [
+        {
+          "name": "Football",
+          "level": 1
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Andy",
+      "age": 32,
+      "hobbies": [
+        {
+          "name": "Reading",
+          "level": 2
+        }
+      ]
+    }
+  ]
+}
