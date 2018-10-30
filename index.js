@@ -35,7 +35,7 @@ var clientType = new graphql.GraphQLObjectType({
 var queryType = new graphql.GraphQLObjectType({
   name: 'Query',
   fields: {
-    getClient: {
+    getClientById: {
       type: clientType,
       // `args` describes the arguments that the `user` query accepts
       args: {
@@ -44,6 +44,10 @@ var queryType = new graphql.GraphQLObjectType({
       resolve: function (_, { id }) {
         return data.clients[id];
       }
+    },
+    getAllClients: {
+      type: new graphql.GraphQLList(clientType),
+      resolve: (_) => data.clients
     }
   }
 });
